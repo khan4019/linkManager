@@ -1,5 +1,12 @@
+(function(){
+	window.linkApp = {
+		Models:{},
+		Collections:{},
+		Views:{}
+	};
+
 //Model
-var Link = Backbone.Model.extend({
+linkApp.Models.Link = Backbone.Model.extend({
 	defaults:{
 		title:'MDN eval',
 		description:'',
@@ -13,20 +20,20 @@ var Link = Backbone.Model.extend({
 });
 
 //Collection
-var LinkCollection = Backbone.Collection.extend({
-	model:Link
+linkApp.Collections.Links = Backbone.Collection.extend({
+	model: linkApp.Models.Link
 });
 
 //view for all link
 
-var AllLinkView = Backbone.View.extend({
+linkApp.Views.Links = Backbone.View.extend({
 	tagName:'ul',
 	initialize:function(){
 		console.log(this.collection);
 	},
 	render:function(){
 		this.collection.each(function(link){
-			var linkView = new LinkView({model:link});
+			var linkView = new linkApp.Views.Link({model:link});
 			this.$el.append(linkView.render().el);
 		}, this);
 
@@ -35,7 +42,7 @@ var AllLinkView = Backbone.View.extend({
 });
 
 //View
-var LinkView = Backbone.View.extend({
+linkApp.Views.Link = Backbone.View.extend({
 	tagName:'li',
 	template:_.template($('#linkTemplate').html()),
 	
@@ -46,7 +53,7 @@ var LinkView = Backbone.View.extend({
 });
 
 
-var linkCollection = new LinkCollection([
+linkApp.Collections.Links = new linkApp.Collections.Links([
 	{
 		title:'MDN with', 
 		description:'use of with for presentation', 
@@ -67,7 +74,9 @@ var linkCollection = new LinkCollection([
 	}
 ]);
 
-var allLinkView = new AllLinkView({collection: linkCollection});
+var allLinkView = new linkApp.Views.Links({collection: linkApp.Collections.Links});
 
 //Temporary
 $(document.body).append(allLinkView.render().el);
+
+})();
