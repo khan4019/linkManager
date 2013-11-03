@@ -11,13 +11,16 @@ var Link = Backbone.Model.extend({
 
 var LinkView = Backbone.View.extend({
 	tagName:'li',
+	template:_.template($('#linkTemplate').html()),
+	
 	initialize:function () {
 		this.render();
 	},
-	render:function () {
-		
+	render:function () {		
+		this.$el.html(this.template(this.model.toJSON()));
 	}
 });
 
 var link = new Link();
-var linkView = new LinkView();
+var linkView = new LinkView({model:link});
+
