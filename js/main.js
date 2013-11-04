@@ -24,6 +24,21 @@
 			completed:0,
 			importance:'',
 			tags:''
+		},
+		validate:function(attrs, options){
+			var newLink = this.toJSON();
+			
+			if(!newLink.title){
+				return "Please provide a title";				
+			}
+
+			if(!newLink.url || ! isURLValid(newLink.url)){
+				return "Please provide a valid URL";
+			}
+
+			if(!newLink.area){
+				return "Please provide at least one valid area";
+			}
 		}
 	});
 
@@ -57,7 +72,7 @@
 		initialize:function(){
 			this.model.on('change', this.render, this);
 			this.model.on('destroy', this.remove, this);
-		},
+		},		
 		events:{
 			'click .add10Percent':'add10Percent',
 			'click .archieve':'archieve',
@@ -108,11 +123,15 @@
 					area:newArea
 				});
 
-			this.collection.add(newLink);
-				
-			//clear the input	
-			currentTarget.find('#newLinkTitle, #newLinkURL, #newLinkArea').val('');	
-			
+			if(newLink.isValid()){
+				this.collection.add(newLink);
+
+				//clear the input field
+				currentTarget.find('#newLinkTitle, #newLinkURL, #newLinkArea').val('');	
+			}
+			else{
+				alert('Title, valid URL and area are required');
+			}
 		}
 	});
 
@@ -142,5 +161,10 @@
 	
 	//push to body
 	$('.links').append(allLinkView.render().el);
+
+	//utility. Validate url. Grabbed from http://stackoverflow.com/questions/4314741/url-regex-validation
+	function isURLValid(url){
+		return /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/.test(url);
+	}
 
 })();
