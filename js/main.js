@@ -126,10 +126,8 @@
 			if(newLink.isValid()){
 				this.collection.add(newLink);
 
-				//clear the input field
+				//clear the input field. hide the form and show the add link button
 				currentTarget.find('#newLinkTitle, #newLinkURL, #newLinkArea').val('');
-
-				//hide the form and show the add link button
 				$('#addLink, #btnShowAdd').toggleClass('hide');
 			}
 			else{
@@ -138,6 +136,7 @@
 		}
 	});
 
+	//temp data for development
 	linkApp.Collections.Links = new linkApp.Collections.Links([
 		{
 			title:'MDN with', 
@@ -159,10 +158,11 @@
 		}
 	]);
 
+	//initiate a new view that would be used for creating new link
 	var addLinkView = new linkApp.Views.AddLink({collection:linkApp.Collections.Links});
 	var allLinkView = new linkApp.Views.Links({collection: linkApp.Collections.Links});
 	
-	//push to body
+	//push to body to display
 	$('.links').append(allLinkView.render().el);
 
 	//utility. Validate url. Grabbed from http://stackoverflow.com/questions/4314741/url-regex-validation
