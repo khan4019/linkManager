@@ -19,9 +19,9 @@
 			url:'',
 			source:'',
 			created:new Date(),
-			type:'',
+			contentType:'',
 			focus:'javascript',
-			status:'',
+			completed:0,
 			importance:'',
 			tags:''
 		}
@@ -40,6 +40,7 @@
 		},
 		render:function(){
 			this.collection.each(this.addOne, this);
+			return this;
 		},
 		addOne:function(link){
 			//create child view and add to the root
@@ -51,7 +52,16 @@
 	//View (single)
 	linkApp.Views.Link = Backbone.View.extend({
 		tagName:'li',
-		template:_.template($('#linkTemplate').html()),		
+		template:template('linkTemplate'),
+		events:{
+			'click .add10Percent':'add10Percent'
+		},
+		add10Percent:function(){
+			var mod = this.model, 
+				currentLevel = mod.get('completed');
+			if(currentLevel <100) mod.set('completed', currentLevel+10);
+			console.log(mod.get('completed'));
+		},
 		render:function () {		
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
@@ -81,9 +91,8 @@
 	]);
 
 	var allLinkView = new linkApp.Views.Links({collection: linkApp.Collections.Links});
-	allLinkView.render();
-
-	//Temporary
-	$('.links').append(allLinkView.el);
+	
+	//push to body
+	$('.links').append(allLinkView.render().el);
 
 })();
