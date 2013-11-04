@@ -127,7 +127,10 @@
 				this.collection.add(newLink);
 
 				//clear the input field
-				currentTarget.find('#newLinkTitle, #newLinkURL, #newLinkArea').val('');	
+				currentTarget.find('#newLinkTitle, #newLinkURL, #newLinkArea').val('');
+
+				//hide the form and show the add link button
+				$('#addLink, #btnShowAdd').toggleClass('hide');
 			}
 			else{
 				alert('Title, valid URL and area are required');

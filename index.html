@@ -15,10 +15,14 @@
 		.longInput{
 			width: 300px;
 		}
+		#btnShowAdd{
+			margin-left: 2%;
+		}
 	</style>
 </head>
 <body>
-	<form id="addLink" action="">
+	<button id="btnShowAdd" class="btn btn-primary">Add New</button>
+	<form id="addLink" action="" class="hide">
 		<p>Title: 
 			<input type="text" id="newLinkTitle" placeholder="Title">
 		</p>	
@@ -37,12 +41,17 @@
 		<button title="Archieve the link" class="btn btn-warning archieve">~</button>
 		<button title="Delete the link" class="btn btn-danger delete">-</button> 
 	</script>
-
+	
 
 	<script src="lib/js/jquery-2.0.3.js"></script>
 	<script src="lib/js/underscore.js"></script>
 	<script src="lib/js/backbone.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+		$('#btnShowAdd').on('click', function(){			
+			$('#addLink, #btnShowAdd').toggleClass('hide');
+		});
+	</script>	
 </body>
 </html>
 
