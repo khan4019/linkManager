@@ -1,14 +1,38 @@
 <html>
 <head>
 	<title>Link Manager</title>
-	<h2>Links from Web</h2>
+	<h1 class="text-center">Link Manager</h1>
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		li{
+			font-size: 2em;
+		}
+		form{
+			margin-left: 2%;
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+		.longInput{
+			width: 300px;
+		}
+	</style>
 </head>
 <body>
-	<h4>Important links</h4>
+	<form id="addLink" action="">
+		<p>Title: 
+			<input type="text" id="newLinkTitle" placeholder="Title">
+		</p>	
+		<p>URL:
+			<input type="text" id="newLinkURL" class="longInput" placeholder="Paste URL">
+		</p>
+		<p>Area:
+			<input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
+		</p>
+		<button class="btn btn-primary">Submit</button>
+	</form>	
 	<div class="links"></div>
 	<script id="linkTemplate" type ="text/template">
-		<a href=<%=url%>><%=title%></a> <em>(<%=focus%>)</em>
+		<a href=<%=url%>><%=title%></a> <em>(<%=area%>)</em>
 		<button title="Add 10 percent to completion level" class="btn btn-success add10Percent">+</button>
 		<button title="Archieve the link" class="btn btn-warning archieve">~</button>
 		<button title="Delete the link" class="btn btn-danger delete">-</button> 
