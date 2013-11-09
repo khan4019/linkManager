@@ -24,7 +24,7 @@
 	<button id="btnShowAdd" class="btn btn-primary">Add New</button>
 	<form id="addLink" action="" class="hide">
 		<p>Title: 
-			<input type="text" id="newLinkTitle" placeholder="Title">
+			<input type="text" id="newLinkTitle" class="longInput"  placeholder="Title">
 		</p>	
 		<p>URL:
 			<input type="text" id="newLinkURL" class="longInput" placeholder="Paste URL">
@@ -32,16 +32,29 @@
 		<p>Area:
 			<input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
 		</p>
+		<div id="divMoreOptions" class="hide">
+			<p>Source: 
+			<input type="text" id="newLinkSource" class="longInput"  placeholder="Where you find this link">
+			</p>	
+			<p>Type:
+				<input type="text" id="newLinkType" class="longInput" placeholder="Blog or Video or tutorial">
+			</p>
+			<p>Tags:
+				<input type="text" id="newLinkTags" class="longInput" placeholder="Pug tags with space">
+			</p>
+		</div>		
+		<button id="btnMoreOptions" type="button" class="btn">more...</button>
 		<button class="btn btn-primary">Submit</button>
+		<br/>
 	</form>	
 	<div class="links"></div>
 	<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>
 	
 	<script id="linkTemplate" type ="text/template">
-		<a href=<%=url%>><%=title%></a> <em>(<%=area%>)</em>
 		<button title="Add 10 percent to completion level" class="btn btn-success add10Percent">+</button>
 		<button title="Archieve the link" class="btn btn-warning archieve">~</button>
 		<button title="Delete the link" class="btn btn-danger delete">-</button> 
+		<a href=<%=url%>><%=title%></a> <em>(<%=area%>)</em>
 	</script>
 	
 
@@ -59,6 +72,17 @@
 	<script>
 		$('#btnShowAdd').on('click', function(){			
 			$('#addLink, #btnShowAdd').toggleClass('hide');
+		});
+
+		$('#btnMoreOptions').on('click', function(e){
+
+			var $el = $('#divMoreOptions'), 
+				isExpanding = $el.hasClass('hide'), 
+				btnOptionText = (isExpanding) ? 'less...' : 'more...';
+
+			$el.toggleClass('hide');
+			$(this).text(btnOptionText);
+			
 		});
 	</script>	
 </body>

@@ -33,7 +33,9 @@ var linkApp = linkApp || {
 			var mod = this.model, 
 				currentLevel = mod.get('completed');
 			if(currentLevel <100) mod.set('completed', currentLevel+10);
-			console.log(mod.get('completed'));
+			mod.save();
+			//will increase to hundred and will archieve it
+			if(currentLevel ==90) this.archieve();
 		},
 		
 		archieve:function(){			

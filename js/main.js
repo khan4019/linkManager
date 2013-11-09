@@ -8,7 +8,7 @@
 
 	
 	//Very bad: temporary 
-	//get data by creating a collection and then
+	//TODO: get data localstorage and upse fetch or something similar
 	var incompletedLinks = new linkApp.Collections.Links().initialize(); 
 	allLinks = new linkApp.Collections.Links(incompletedLinks);
 
