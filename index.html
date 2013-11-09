@@ -7,6 +7,10 @@
 		li{
 			font-size: 2em;
 		}
+		#linkApp{
+			width: 550px;
+			margin: 100px auto 40px auto;
+		}
 		form{
 			margin-left: 2%;
 			font-size: 1.5em;
@@ -15,19 +19,23 @@
 		.longInput{
 			width: 300px;
 		}
+		.veryLongInput{
+			width: 600px;
+		}
 		#btnShowAdd{
 			margin-left: 2%;
 		}
 	</style>
 </head>
 <body>
-	<button id="btnShowAdd" class="btn btn-primary">Add New</button>
+	<!-- this will go to a dialog -->
+	
 	<form id="addLink" action="" class="hide">
 		<p>Title: 
 			<input type="text" id="newLinkTitle" class="longInput"  placeholder="Title">
 		</p>	
 		<p>URL:
-			<input type="text" id="newLinkURL" class="longInput" placeholder="Paste URL">
+			<input type="text" id="newLinkURL" class="veryLongInput" placeholder="Paste URL">
 		</p>
 		<p>Area:
 			<input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
@@ -47,8 +55,12 @@
 		<button class="btn btn-primary">Submit</button>
 		<br/>
 	</form>	
-	<div class="links"></div>
-	<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>
+	<section id="linkApp">
+		<button id="btnShowAdd" class="btn btn-primary">Add New</button>
+		<div class="links"></div>
+		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
+	</section>
+	
 	
 	<script id="linkTemplate" type ="text/template">
 		<button title="Add 10 percent to completion level" class="btn btn-success add10Percent">+</button>
