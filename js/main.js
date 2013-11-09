@@ -1,46 +1,10 @@
 (function(){
 
-	window.linkApp = {
+	window.linkApp =  linkApp || {
 		Models:{},
 		Collections:{},
 		Views:{}
 	};
-
-	//Template
-	window.template = function (id) {
-		return _.template($('#'+id).html());
-	}
-
-	//Model
-	linkApp.Models.Link = Backbone.Model.extend({
-		defaults:{
-			title:'',
-			description:'',
-			url:'',
-			source:'',
-			created:new Date(),
-			contentType:'',
-			area:'javascript',
-			completed:0,
-			importance:'',
-			tags:''
-		},
-		validate:function(attrs, options){
-			var newLink = this.toJSON();
-			
-			if(!newLink.title){
-				return "Please provide a title";				
-			}
-
-			if(!newLink.url || ! isURLValid(newLink.url)){
-				return "Please provide a valid URL";
-			}
-
-			if(!newLink.area){
-				return "Please provide at least one valid area";
-			}
-		}
-	});
 
 	//Collection
 	linkApp.Collections.Links = Backbone.Collection.extend({
@@ -62,42 +26,6 @@
 			//create child view and add to the root
 			var linkView = new linkApp.Views.Link({model:link});
 			this.$el.prepend(linkView.render().el);
-		}
-	});
-
-	//View (single)
-	linkApp.Views.Link = Backbone.View.extend({
-		tagName:'li',
-		template:template('linkTemplate'),
-		initialize:function(){
-			this.model.on('change', this.render, this);
-			this.model.on('destroy', this.remove, this);
-		},		
-		events:{
-			'click .add10Percent':'add10Percent',
-			'click .archieve':'archieve',
-			'click .delete':'destroy'
-		},
-		add10Percent:function(){
-			var mod = this.model, 
-				currentLevel = mod.get('completed');
-			if(currentLevel <100) mod.set('completed', currentLevel+10);
-			console.log(mod.get('completed'));
-		},
-		archieve:function(){
-			//archieve it
-			this.remove();
-			console.log('archieved is not implemented. Hence not archieved. but remove. '+this.model.get('title'));
-		},
-		remove:function(){
-			this.$el.remove();
-		},
-		destroy:function(){
-			this.model.destroy();	
-		},
-		render:function () {		
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
 		}
 	});
 
@@ -165,9 +93,10 @@
 	//push to body to display
 	$('.links').append(allLinkView.render().el);
 
-	//utility. Validate url. Grabbed from http://stackoverflow.com/questions/4314741/url-regex-validation
-	function isURLValid(url){
-		return /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/.test(url);
-	}
 
 })();
+
+//utility. Validate url. Grabbed from http://stackoverflow.com/questions/4314741/url-regex-validation
+function isURLValid(url){
+	return /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/.test(url);
+}
