@@ -36,15 +36,14 @@ var linkApp = linkApp || {
 			console.log(mod.get('completed'));
 		},
 		
-		archieve:function(){
-			//archieve it
-			this.remove();
-			console.log('archieved is not implemented. Hence not archieved. but remove. '+this.model.get('title'));
+		archieve:function(){			
+			this.remove();			
 		},
 		
 		remove:function(){
+			this.model.set('completed', 100);
+			this.model.save();
 			this.$el.remove();
-			this.model.completed = 100;
 		},
 		
 		destroy:function(){
