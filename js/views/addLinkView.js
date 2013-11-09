@@ -25,11 +25,17 @@ var linkApp = linkApp || {
 			var currentTarget = $(e.currentTarget),
 				newTitle = currentTarget.find('#newLinkTitle').val(),
 				newURL = currentTarget.find('#newLinkURL').val(),
-				newArea = currentTarget.find('#newLinkArea').val(), 
+				newArea = currentTarget.find('#newLinkArea').val(),
+				newSource = currentTarget.find('#newLinkSource').val(),
+				newType = currentTarget.find('#newLinkType').val(),
+				newTags = currentTarget.find('#newLinkTags').val(),
 				newLink = new linkApp.Models.Link({
 					title:newTitle,
 					url: newURL,
-					area:newArea
+					area:newArea,
+					source:newSource,
+					contentType:newType,
+					tags:newTags
 				});
 
 			if(newLink.isValid()){
