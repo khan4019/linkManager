@@ -6,11 +6,6 @@
 		Views:{}
 	};
 
-	//Collection
-	linkApp.Collections.Links = Backbone.Collection.extend({
-		model: linkApp.Models.Link
-	});
-
 	//temp data for development
 	linkApp.Collections.Links = new linkApp.Collections.Links([
 		{
