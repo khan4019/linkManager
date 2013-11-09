@@ -34,7 +34,7 @@ var linkApp = linkApp || {
 
 			if(newLink.isValid()){
 				this.collection.add(newLink);
-
+				newLink.save();
 				//clear the input field. hide the form and show the add link button
 				currentTarget.find('#newLinkTitle, #newLinkURL, #newLinkArea').val('');
 				$('#addLink, #btnShowAdd').toggleClass('hide');

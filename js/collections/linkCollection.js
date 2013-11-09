@@ -7,9 +7,13 @@ var linkApp = linkApp || {
 
 (function () {
 	'use strict';
-	//Collection
+	
+	//Collection is backed by "localStorage" instead of remote server
 	linkApp.Collections.Links = Backbone.Collection.extend({
-		model: linkApp.Models.Link
+		model: linkApp.Models.Link,
+
+		// save all links under 'linApp' namespace
+		localStorage: new Backbone.LocalStorage('linkApp-backbone'),
 	});
 
 })();

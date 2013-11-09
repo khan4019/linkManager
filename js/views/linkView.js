@@ -7,7 +7,7 @@ var linkApp = linkApp || {
 (function () {
 	'use strict';
 
-	//Template
+	//cache the Template for single item
 	window.template = function (id) {
 		return _.template($('#'+id).html());
 	}
