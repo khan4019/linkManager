@@ -14,6 +14,12 @@ var linkApp = linkApp || {
 
 		// save all links under 'linApp' namespace
 		localStorage: new Backbone.LocalStorage('linkApp-backbone'),
+
+		initialize:function(){			
+			return this.localStorage.findAll().filter(function(lnk){				
+										return lnk.completed <100;
+									});
+		}
 	});
 
 })();

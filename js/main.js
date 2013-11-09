@@ -6,31 +6,15 @@
 		Views:{}
 	};
 
-	//temp data for development
-	linkApp.Collections.Links = new linkApp.Collections.Links([
-		{
-			title:'MDN with', 
-			description:'use of with for presentation', 
-			url:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with",
-			tags:'JavaScript'
-		},
-		{
-			title:'MDN eval', 
-			description:'use of with for presentation', 
-			url:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with",
-			tags:'JavaScript'
-		},
-		{
-			title:'MDN null', 
-			description:'use of with for presentation', 
-			url:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
-			tags:'JavaScript'
-		}
-	]);
+	
+	//Very bad: temporary 
+	//get data by creating a collection and then
+	var incompletedLinks = new linkApp.Collections.Links().initialize(); 
+	allLinks = new linkApp.Collections.Links(incompletedLinks);
 
 	//initiate a new view that would be used for creating new link
-	var addLinkView = new linkApp.Views.AddLink({collection:linkApp.Collections.Links});
-	var allLinkView = new linkApp.Views.Links({collection: linkApp.Collections.Links});
+	var addLinkView = new linkApp.Views.AddLink({collection:allLinks});
+	var allLinkView = new linkApp.Views.Links({collection: allLinks});
 	
 	//push to body to display
 	$('.links').append(allLinkView.render().el);

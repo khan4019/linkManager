@@ -44,6 +44,7 @@ var linkApp = linkApp || {
 		
 		remove:function(){
 			this.$el.remove();
+			this.model.completed = 100;
 		},
 		
 		destroy:function(){
