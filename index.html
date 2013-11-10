@@ -1,10 +1,27 @@
 <html>
 <head>
 	<title>Link Manager</title>
-	<h1 class="text-center">Link Manager</h1>
+	<h1 class="text-center page-Header">Link Manager</h1>
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css">
 	<style type="text/css">
+		.page-Header{
+			position: absolute;
+			top: -40px;
+			width: 100%;
+			font-size: 70px;
+			font-weight: bold;
+			text-align: center;
+			color: #b3b3b3;
+			color: rgba(255, 255, 255, 0.3);
+			text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+			-webkit-text-rendering: optimizeLegibility;
+			-moz-text-rendering: optimizeLegibility;
+			-ms-text-rendering: optimizeLegibility;
+			-o-text-rendering: optimizeLegibility;
+			text-rendering: optimizeLegibility;
+		}
+		
 		li{
 			font-size: 2em;
 		}
@@ -26,6 +43,7 @@
 		#btnShowAdd{
 			margin-left: 2%;
 		}
+
 	</style>
 </head>
 <body>
@@ -33,8 +51,7 @@
 	<!-- I dont like how many html i have to write for
 	bootstrap modal dialog. Jquery dialog() was cleaner
 	more readable -->
-	
-	
+		
     <!-- Modal -->
     <div id="deleteMessage" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
         <div class="modal-dialog">
@@ -81,8 +98,7 @@
 	<!-- End of modal crap -->
 
 	<section id="linkApp">
-		<a data-toggle="modal" data-target="#deleteMessage" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Add new</a>
-		<!-- <button id="btnShowAdd" class="btn btn-primary">Add New</button> -->
+		<a data-toggle="modal" data-target="#deleteMessage" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Add new</a>		
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
 	</section>
