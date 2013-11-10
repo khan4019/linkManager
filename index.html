@@ -29,6 +29,11 @@
 			width: 550px;
 			margin: 100px auto 40px auto;
 		}
+
+		.extraSmallText{
+			font-size: 0.7em;
+		}
+
 		/*color shades based on percent completed*/
 		.completed0{
 			background-color: #e6e6e6;			
@@ -78,7 +83,7 @@
 		<button title="Add 10 percent to completion level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
 		<button title="Archieve the link" class="btn btn-warning btn-xs archieve"><span class="glyphicon glyphicon-floppy-save"></span></button>
 		<button title="Delete the link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
-		<a href=<%=url%>><%=title%></a> <span class="text-muted small">(<%=area%>)</span>
+		<a href=<%=url%>><%=title%></a> <span class="text-muted small extraSmallText">(<%=area%>:<%=tags%>-<%=importance%>)</span>
 	</script>
 
 	<!-- I dont like how many html i have to write for
@@ -145,6 +150,7 @@
                 	</div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                    <button type="reset" class="btn btn-warning" >Reset</button>
 	                    <button type="submit" class="btn btn-primary">Submit</button>
 	                </div>
                 </form> 
