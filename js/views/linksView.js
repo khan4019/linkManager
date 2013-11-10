@@ -10,6 +10,9 @@ var linkApp = linkApp || {
 	linkApp.Views.Links = Backbone.View.extend({
 		
 		tagName:'ul',
+
+		//dont wanna see dot on each link
+		className: "list-unstyled",
 		
 		initialize:function(){
 			//when add a new one render it
