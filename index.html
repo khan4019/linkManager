@@ -29,7 +29,12 @@
 			width: 750px;
 			margin: 100px auto 40px auto;
 		}
-
+		#divFilter{
+			margin-top: 7px;
+		}
+		#divFilter input{
+			margin-right: 5px;
+		}
 		.extraSmallText{
 			font-size: 0.7em;
 		}
@@ -51,7 +56,14 @@
 <body>
 	
 	<section id="linkApp">
-		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>		
+		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>
+		<div id="divFilter" class="row">
+			<label class="col-sm-1 control-label">Filter:</label>
+			<input type="text" class="col-sm-2" placeholder="Title">
+			<input type="text" class="col-sm-2" placeholder="Area">
+			<input type="text" class="col-sm-2" placeholder="Tags">
+			<input type="text" class="col-sm-2" placeholder="Importance">			
+		</div>
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
 	</section>
