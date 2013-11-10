@@ -67,6 +67,20 @@
 </head>
 <body>
 	
+	<section id="linkApp">
+		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>		
+		<div class="links"></div>
+		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
+	</section>
+	
+	<!-- template for link render	 -->
+	<script id="linkTemplate" type ="text/template">
+		<button title="Add 10 percent to completion level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
+		<button title="Archieve the link" class="btn btn-warning btn-xs archieve"><span class="glyphicon glyphicon-floppy-save"></span></button>
+		<button title="Delete the link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
+		<a href=<%=url%>><%=title%></a> <span class="text-muted small">(<%=area%>)</span>
+	</script>
+
 	<!-- I dont like how many html i have to write for
 	bootstrap modal dialog. Jquery dialog() was cleaner
 	more readable -->
@@ -138,21 +152,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 	<!-- End of modal crap -->
-
-	<section id="linkApp">
-		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Add new</a>		
-		<div class="links"></div>
-		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
-	</section>
-	
-	
-	<script id="linkTemplate" type ="text/template">
-		<button title="Add 10 percent to completion level" class="btn btn-xs add10Percent completed<%=completed%>">+</button>
-		<button title="Archieve the link" class="btn btn-warning btn-xs archieve">~</button>
-		<button title="Delete the link" class="btn btn-danger btn-xs delete">-</button> 
-		<a href=<%=url%>><%=title%></a> <span class="text-muted small">(<%=area%>)</span>
-	</script>
-	
+		
 	<!-- TODO: use require for modularity -->
 	<script src ="lib/js/jquery-2.0.3.js"></script>
 	<script src ="lib/js/underscore.js"></script>
