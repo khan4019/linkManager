@@ -4,28 +4,28 @@
 	linkApp.Routers.LinkRoutes = Backbone.Router.extend({
 		routes:{
 			'':'index',
-			'/archieved':'archieved',
-			'/area':'byArea',
-			'/area/:areaKey':'filterByArea',
-			'/importance':'byImportance',
-			'/importance/:importanceKey':'filterByImportance',
-			'/tags':'byTags',
-			'/tags/:tagkey':'filterByTag',
-			'/*other':'default'
+			'archieved':'archieved',
+			'area':'byArea',
+			'area/:areaKey':'filterByArea',
+			'importance':'byImportance',
+			'importance/:importanceKey':'filterByImportance',
+			'tags':'byTags',
+			'tags/:tagkey':'filterByTag',
+			'*other':'default'
 		},
 		index:function(){
 			console.log('hi there');
 		},
 
 		archieved:function(){
-			console.log('all archieved');
+			vent.trigger('links:archieved');
 		},
 		
-		byArea:function(){
-			console.log('order by area');
+		byArea:function(){			
+			linkAppEvents.trigger('linksByArea');
 		},
 		filterByArea:function(areaKey){
-			console.log('Filter by area: '+areaKey);
+			linkAppEvents.trigger('filterByArea', areaKey);			
 		},
 		
 		byImportance:function(){
@@ -50,6 +50,6 @@
 	new linkApp.Routers.LinkRoutes;
 	//backbone uses # style routing. Express urses slash style. ()
 	//TODO: Its not done. have to do crappy stuff http://backbonejs.org/#Router-navigate 
-	
-	Backbone.history.start({pushState: true});
+	// use pushState Backbone.history.start({pushState: true});
+	Backbone.history.start();
 })();

@@ -60,10 +60,11 @@
 		<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Show Archieved</button>
 		<div id="divFilter" class="row">
 			<label class="col-sm-1 control-label">Filter:</label>
-			<input type="text" class="col-sm-2" placeholder="Title">
-			<input type="text" class="col-sm-2" placeholder="Area">
-			<input type="text" class="col-sm-2" placeholder="Tags">
-			<input type="text" class="col-sm-2" placeholder="Importance">			
+			<input id="filterTitle" type="text" class="col-sm-2" placeholder="Title">
+			<input id="filterArea" type="text" class="col-sm-2" placeholder="Area">
+			<input id="filterTags" type="text" class="col-sm-2" placeholder="Tags">
+			<input id="filterImportance" type="text" class="col-sm-2" placeholder="Importance">
+			<button id="clearFilter" class="btn btn-default btn-xs">clear</button>			
 		</div>
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
@@ -172,6 +173,7 @@
 	<script src="js/views/linkView.js"></script>
 	<script src="js/views/linksView.js"></script>
 	<script src="js/views/addLinkView.js"></script>
+	<script src="js/views/filteredLinks.js"></script>
 	<script src="js/collections/linkCollection.js"></script>
 	<script src="js/routers/linkAPProuters.js"></script>
 	<script src="js/main.js"></script>
