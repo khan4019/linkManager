@@ -1,12 +1,5 @@
 (function(){
 
-	window.linkApp =  linkApp || {
-		Models:{},
-		Collections:{},
-		Views:{}
-	};
-
-	
 	//TODO: get data localstorage and upse fetch or something similar
 	//Implement database and do fetching from there
 	var incompletedLinks = new linkApp.Collections.Links().allIncomplete(); 
