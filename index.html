@@ -29,19 +29,7 @@
 			width: 550px;
 			margin: 100px auto 40px auto;
 		}
-		form{
-			margin-left: 2%;
-			font-size: 1.5em;
-			font-weight: bold;
-		}
 		
-		.veryform-control{
-			width: 600px;
-		}
-		#btnShowAdd{
-			margin-left: 2%;
-		}
-
 	</style>
 </head>
 <body>
@@ -55,7 +43,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h2 class="modal-title">Add new Link</h2>
                 </div>
                 <form id="addLink" class="form-horizontal" role="form">	
@@ -126,10 +114,10 @@
 	
 	
 	<script id="linkTemplate" type ="text/template">
-		<button title="Add 10 percent to completion level" class="btn btn-success add10Percent">+</button>
-		<button title="Archieve the link" class="btn btn-warning archieve">~</button>
-		<button title="Delete the link" class="btn btn-danger delete">-</button> 
-		<a href=<%=url%>><%=title%></a> <em>(<%=area%>)</em>
+		<button title="Add 10 percent to completion level" class="btn btn-success btn-xs add10Percent">+</button>
+		<button title="Archieve the link" class="btn btn-warning btn-xs archieve">~</button>
+		<button title="Delete the link" class="btn btn-danger btn-xs delete">-</button> 
+		<a href=<%=url%>><%=title%></a> <span class="text-muted small">(<%=area%>)</span>
 	</script>
 	
 	<!-- TODO: use require for modularity -->
@@ -146,12 +134,8 @@
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
 	<script>
-		$('#btnShowAdd').on('click', function(){			
-			$('#addLink, #btnShowAdd').toggleClass('hide');
-		});
-
+		//toggle extra form-control and button text
 		$('#btnMoreOptions').on('click', function(e){
-
 			var $el = $('#divMoreOptions'), 
 				isExpanding = $el.hasClass('hide'), 
 				btnOptionText = (isExpanding) ? 'less...' : 'more...';
