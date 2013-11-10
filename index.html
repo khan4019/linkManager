@@ -1,75 +1,168 @@
 <html>
 <head>
 	<title>Link Manager</title>
-	<h1 class="text-center">Link Manager</h1>
+	<h1 class="text-center page-Header">Link Manager</h1>
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css">
 	<style type="text/css">
+		.page-Header{
+			position: absolute;
+			top: -40px;
+			width: 100%;
+			font-size: 70px;
+			font-weight: bold;
+			text-align: center;
+			color: #b3b3b3;
+			color: rgba(255, 255, 255, 0.3);
+			text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+			-webkit-text-rendering: optimizeLegibility;
+			-moz-text-rendering: optimizeLegibility;
+			-ms-text-rendering: optimizeLegibility;
+			-o-text-rendering: optimizeLegibility;
+			text-rendering: optimizeLegibility;
+		}
+
 		li{
 			font-size: 2em;
 		}
 		#linkApp{
-			width: 550px;
+			width: 750px;
 			margin: 100px auto 40px auto;
 		}
-		form{
-			margin-left: 2%;
-			font-size: 1.5em;
-			font-weight: bold;
+		#divFilter{
+			margin-top: 7px;
 		}
-		.longInput{
-			width: 300px;
+		#divFilter input{
+			margin-right: 5px;
 		}
-		.veryLongInput{
-			width: 600px;
+		.extraSmallText{
+			font-size: 0.7em;
 		}
-		#btnShowAdd{
-			margin-left: 2%;
-		}
+
+		/*color shades based on percent completed*/
+		.completed0{ background-color: #e6e6e6;}
+		.completed10{ background-color: #999999;}
+		.completed20{background-color: #555555;}
+		.completed30{background-color: #5bc0de;}
+		.completed40{background-color: #2f96b4;}
+		.completed50{background-color: #0088cc;}
+		.completed60{background-color: #0044cc;}
+		.completed70{background-color: #62c462;}
+		.completed80{background-color: #468847;}
+		.completed90{background-color: #1f541f;}
+		.completed100{background-color: #007f00;}
 	</style>
 </head>
 <body>
-	<!-- this will go to a dialog -->
 	
-	<form id="addLink" action="" class="hide">
-		<p>Title: 
-			<input type="text" id="newLinkTitle" class="longInput"  placeholder="Title">
-		</p>	
-		<p>URL:
-			<input type="text" id="newLinkURL" class="veryLongInput" placeholder="Paste URL">
-		</p>
-		<p>Area:
-			<input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
-		</p>
-		<div id="divMoreOptions" class="hide">
-			<p>Source: 
-			<input type="text" id="newLinkSource" class="longInput"  placeholder="Where you find this link">
-			</p>	
-			<p>Type:
-				<input type="text" id="newLinkType" class="longInput" placeholder="Blog or Video or tutorial">
-			</p>
-			<p>Tags:
-				<input type="text" id="newLinkTags" class="longInput" placeholder="Pug tags with space">
-			</p>
-		</div>		
-		<button id="btnMoreOptions" type="button" class="btn">more...</button>
-		<button class="btn btn-primary">Submit</button>
-		<br/>
-	</form>	
 	<section id="linkApp">
-		<button id="btnShowAdd" class="btn btn-primary">Add New</button>
+		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>
+		<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Show Archieved</button>
+		<div id="divFilter" class="row">
+			<label class="col-sm-1 control-label">Filter:</label>
+			<input type="text" class="col-sm-2" placeholder="Title">
+			<input type="text" class="col-sm-2" placeholder="Area">
+			<input type="text" class="col-sm-2" placeholder="Tags">
+			<input type="text" class="col-sm-2" placeholder="Importance">			
+		</div>
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
 	</section>
 	
-	
+	<!-- template for link render	 -->
 	<script id="linkTemplate" type ="text/template">
-		<button title="Add 10 percent to completion level" class="btn btn-success add10Percent">+</button>
-		<button title="Archieve the link" class="btn btn-warning archieve">~</button>
-		<button title="Delete the link" class="btn btn-danger delete">-</button> 
-		<a href=<%=url%>><%=title%></a> <em>(<%=area%>)</em>
+		<button title="Finished 10 more percent of this level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
+		<button title="Archieve this link" class="btn btn-warning btn-xs archieve"><span class="glyphicon glyphicon-floppy-save"></span></button>
+		<button title="Delete this link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
+		<a href=<%=url%>><%=title%></a> <span class="text-muted small extraSmallText">(<%=area%>:<%=tags%>-<%=importance%>)</span>
 	</script>
-	
 
+	<!-- I dont like how many html i have to write for
+	bootstrap modal dialog. Jquery dialog() was cleaner
+	more readable -->
+		
+    <!-- Modal -->
+    <div id="addLinkModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h2 class="modal-title">Add new Link</h2>
+                </div>
+                <form id="addLink" class="form-horizontal" role="form">	
+                	<div class="modal-body">
+                    	<div class="form-group">
+						    <label for="newLinkTitle" class="col-sm-2 control-label">Title</label>
+						    <div class="col-sm-10">
+						    	<input type="text" id="newLinkTitle" class="form-control"  placeholder="Title" required="true" >
+						    </div>
+						</div>
+                        <div class="form-group">
+						    <label for="newLinkURL" class="col-sm-2 control-label">URL</label>
+						    <div class="col-sm-10">
+						    	<input type="url" id="newLinkURL" class="form-control" placeholder="Paste URL" required="true" >
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="newLinkArea" class="col-sm-2 control-label">Area</label>
+						    <div class="col-sm-10">
+						    	<input type="text" id="newLinkArea" class="form-control" placeholder="Define focus area (Javascript or css)" required="true" >
+						    </div>
+						</div>
+                        <div id="divMoreOptions" class="hide">
+                            <div class="form-group">
+							    <label for="newLinkDescription" class="col-sm-2 control-label">Description</label>
+							    <div class="col-sm-10">
+							    	<textarea id="newLinkDescription" class="form-control"  placeholder="Add a Description" rows="3"></textarea>							    	
+							    </div>
+							</div>
+                            <div class="form-group">
+							    <label for="newLinkSource" class="col-sm-2 control-label">Source</label>
+							    <div class="col-sm-10">
+							    	<input type="text" id="newLinkSource" class="form-control"  placeholder="Where you find this link">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="newLinkType" class="col-sm-2 control-label">Type</label>
+							    <div class="col-sm-10">
+							    	<input type="text" id="newLinkType" class="form-control" placeholder="Blog or Video or tutorial">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="newLinkTags" class="col-sm-2 control-label">Tags</label>
+							    <div class="col-sm-10">
+							    	<input type="text" id="newLinkTags" class="form-control" placeholder="Pug tags with space">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="newLinkImportance" class="col-sm-2 control-label">Importance</label>
+							    <div class="col-sm-10">							    	
+							    	<select class="form-control" id="newLinkImportance">
+									  <option>Not Bad</option>
+									  <option>Good</option>
+									  <option>Awesome</option>
+									  <option>Fantastic</option>
+									  <option>Mind Blowing</option>
+									</select>
+							    </div>
+							</div>          
+                        </div>
+                        <div class="col-sm-2">
+                        	<button id="btnMoreOptions" type="button" class="btn btn-default btn-xs">more...</button>	
+                        </div>
+                	</div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                    <button type="reset" class="btn btn-warning" id ="btnNewLinkReset">Reset</button>
+	                    <button type="submit" class="btn btn-primary">Submit</button>
+	                </div>
+                </form> 
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+	<!-- End of modal crap -->
+		
+	<!-- TODO: use require for modularity -->
 	<script src ="lib/js/jquery-2.0.3.js"></script>
 	<script src ="lib/js/underscore.js"></script>
 	<script src ="lib/js/backbone.js"></script>
@@ -80,14 +173,11 @@
 	<script src="js/views/addLinkView.js"></script>
 	<script src="js/collections/linkCollection.js"></script>
 	<script src="js/main.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
 	<script>
-		$('#btnShowAdd').on('click', function(){			
-			$('#addLink, #btnShowAdd').toggleClass('hide');
-		});
-
+		//toggle extra form-control and button text
 		$('#btnMoreOptions').on('click', function(e){
-
 			var $el = $('#divMoreOptions'), 
 				isExpanding = $el.hasClass('hide'), 
 				btnOptionText = (isExpanding) ? 'less...' : 'more...';
