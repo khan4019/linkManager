@@ -3,6 +3,7 @@
 	<title>Link Manager</title>
 	<h1 class="text-center">Link Manager</h1>
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css">
 	<style type="text/css">
 		li{
 			font-size: 2em;
@@ -28,35 +29,60 @@
 	</style>
 </head>
 <body>
-	<!-- this will go to a dialog -->
 	
-	<form id="addLink" action="" class="hide">
-		<p>Title: 
-			<input type="text" id="newLinkTitle" class="longInput"  placeholder="Title">
-		</p>	
-		<p>URL:
-			<input type="text" id="newLinkURL" class="veryLongInput" placeholder="Paste URL">
-		</p>
-		<p>Area:
-			<input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
-		</p>
-		<div id="divMoreOptions" class="hide">
-			<p>Source: 
-			<input type="text" id="newLinkSource" class="longInput"  placeholder="Where you find this link">
-			</p>	
-			<p>Type:
-				<input type="text" id="newLinkType" class="longInput" placeholder="Blog or Video or tutorial">
-			</p>
-			<p>Tags:
-				<input type="text" id="newLinkTags" class="longInput" placeholder="Pug tags with space">
-			</p>
-		</div>		
-		<button id="btnMoreOptions" type="button" class="btn">more...</button>
-		<button class="btn btn-primary">Submit</button>
-		<br/>
-	</form>	
+	<!-- I dont like how many html i have to write for
+	bootstrap modal dialog. Jquery dialog() was cleaner
+	more readable -->
+	
+	
+    <!-- Modal -->
+    <div id="deleteMessage" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h4 class="modal-title">Add new Link</h4>
+                </div>
+                <form id="addLink" action="" class="">	
+                	<div class="modal-body">
+                    
+                        <p>Title: 
+                            <input type="text" id="newLinkTitle" class="longInput"  placeholder="Title">
+                        </p>    
+                        <p>URL:
+                            <input type="text" id="newLinkURL" class="longInput" placeholder="Paste URL">
+                        </p>
+                        <p>Area:
+                            <input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
+                        </p>
+                        <div id="divMoreOptions" class="hide">
+                            <p>Source: 
+                            <input type="text" id="newLinkSource" class="longInput"  placeholder="Where you find this link">
+                            </p>    
+                            <p>Type:
+                                <input type="text" id="newLinkType" class="longInput" placeholder="Blog or Video or tutorial">
+                            </p>
+                            <p>Tags:
+                                <input type="text" id="newLinkTags" class="longInput" placeholder="Pug tags with space">
+                            </p>
+                        </div>      
+                        <button id="btnMoreOptions" type="button" class="btn">more...</button>
+                        <button class="btn btn-primary">Submit</button>
+                        <br/>                    
+                	</div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+	                </div>
+                </form> 
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+	<!-- End of modal crap -->
+
 	<section id="linkApp">
-		<button id="btnShowAdd" class="btn btn-primary">Add New</button>
+		<a data-toggle="modal" data-target="#deleteMessage" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Add new</a>
+		<!-- <button id="btnShowAdd" class="btn btn-primary">Add New</button> -->
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
 	</section>
@@ -69,7 +95,7 @@
 		<a href=<%=url%>><%=title%></a> <em>(<%=area%>)</em>
 	</script>
 	
-
+	<!-- TODO: use require for modularity -->
 	<script src ="lib/js/jquery-2.0.3.js"></script>
 	<script src ="lib/js/underscore.js"></script>
 	<script src ="lib/js/backbone.js"></script>
@@ -80,6 +106,7 @@
 	<script src="js/views/addLinkView.js"></script>
 	<script src="js/collections/linkCollection.js"></script>
 	<script src="js/main.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
 	<script>
 		$('#btnShowAdd').on('click', function(){			
