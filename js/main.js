@@ -7,14 +7,13 @@
 	};
 
 	
-	//Very bad: temporary 
 	//TODO: get data localstorage and upse fetch or something similar
-	var incompletedLinks = new linkApp.Collections.Links().initialize(); 
-	allLinks = new linkApp.Collections.Links(incompletedLinks);
-
+	//Implement database and do fetching from there
+	var incompletedLinks = new linkApp.Collections.Links().allIncomplete(); 
+	
 	//initiate a new view that would be used for creating new link
-	var addLinkView = new linkApp.Views.AddLink({collection:allLinks});
-	var allLinkView = new linkApp.Views.Links({collection: allLinks});
+	var addLinkView = new linkApp.Views.AddLink({collection:incompletedLinks});
+	var allLinkView = new linkApp.Views.Links({collection: incompletedLinks});
 	
 	//push to body to display
 	$('.links').append(allLinkView.render().el);
