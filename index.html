@@ -21,7 +21,7 @@
 			-o-text-rendering: optimizeLegibility;
 			text-rendering: optimizeLegibility;
 		}
-		
+
 		li{
 			font-size: 2em;
 		}
@@ -34,10 +34,8 @@
 			font-size: 1.5em;
 			font-weight: bold;
 		}
-		.longInput{
-			width: 300px;
-		}
-		.veryLongInput{
+		
+		.veryform-control{
 			width: 600px;
 		}
 		#btnShowAdd{
@@ -58,30 +56,53 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                    <h4 class="modal-title">Add new Link</h4>
+                    <h2 class="modal-title">Add new Link</h2>
                 </div>
-                <form id="addLink" action="" class="">	
+                <form id="addLink" class="form-horizontal" role="form">	
                 	<div class="modal-body">
-                    
-                        <p>Title: 
-                            <input type="text" id="newLinkTitle" class="longInput"  placeholder="Title">
-                        </p>    
-                        <p>URL:
-                            <input type="text" id="newLinkURL" class="longInput" placeholder="Paste URL">
-                        </p>
-                        <p>Area:
-                            <input type="text" id="newLinkArea" class="longInput" placeholder="Define one or more area">
-                        </p>
+                    	<div class="form-group">
+						    <label for="newLinkTitle" class="col-sm-2 control-label">Title</label>
+						    <div class="col-sm-10">
+						    	<input type="text" id="newLinkTitle" class="form-control"  placeholder="Title" required="true" >
+						    </div>
+						</div>
+                        <div class="form-group">
+						    <label for="newLinkURL" class="col-sm-2 control-label">URL</label>
+						    <div class="col-sm-10">
+						    	<input type="url" id="newLinkURL" class="form-control" placeholder="Paste URL" required="true" >
+						    </div>
+						</div>
+						<div class="form-group">
+						    <label for="newLinkArea" class="col-sm-2 control-label">Area</label>
+						    <div class="col-sm-10">
+						    	<input type="text" id="newLinkArea" class="form-control" placeholder="Define focus area (Javascript or css)" required="true" >
+						    </div>
+						</div>
                         <div id="divMoreOptions" class="hide">
-                            <p>Source: 
-                            <input type="text" id="newLinkSource" class="longInput"  placeholder="Where you find this link">
-                            </p>    
-                            <p>Type:
-                                <input type="text" id="newLinkType" class="longInput" placeholder="Blog or Video or tutorial">
-                            </p>
-                            <p>Tags:
-                                <input type="text" id="newLinkTags" class="longInput" placeholder="Pug tags with space">
-                            </p>
+                            <div class="form-group">
+							    <label for="newLinkDescription" class="col-sm-2 control-label">Details</label>
+							    <div class="col-sm-10">
+							    	<textarea id="newLinkDescription" class="form-control"  placeholder="Add Description" rows="3"></textarea>							    	
+							    </div>
+							</div>
+                            <div class="form-group">
+							    <label for="newLinkSource" class="col-sm-2 control-label">Source</label>
+							    <div class="col-sm-10">
+							    	<input type="text" id="newLinkSource" class="form-control"  placeholder="Where you find this link">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="newLinkType" class="col-sm-2 control-label">Type</label>
+							    <div class="col-sm-10">
+							    	<input type="text" id="newLinkType" class="form-control" placeholder="Blog or Video or tutorial">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label for="newLinkTags" class="col-sm-2 control-label">Tags</label>
+							    <div class="col-sm-10">
+							    	<input type="text" id="newLinkTags" class="form-control" placeholder="Pug tags with space">
+							    </div>
+							</div>                            
                         </div>      
                         <button id="btnMoreOptions" type="button" class="btn">more...</button>
                         <button class="btn btn-primary">Submit</button>
