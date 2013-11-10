@@ -51,7 +51,7 @@
 	more readable -->
 		
     <!-- Modal -->
-    <div id="deleteMessage" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div id="addLinkModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,14 +103,14 @@
 							    	<input type="text" id="newLinkTags" class="form-control" placeholder="Pug tags with space">
 							    </div>
 							</div>                            
-                        </div>      
-                        <button id="btnMoreOptions" type="button" class="btn">more...</button>
-                        <button class="btn btn-primary">Submit</button>
-                        <br/>                    
+                        </div>
+                        <div class="col-sm-2">
+                        	<button id="btnMoreOptions" type="button" class="btn btn-default btn-xs">more...</button>	
+                        </div>
                 	</div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+	                    <button type="submit" class="btn btn-primary">Submit</button>
 	                </div>
                 </form> 
             </div><!-- /.modal-content -->
@@ -119,7 +119,7 @@
 	<!-- End of modal crap -->
 
 	<section id="linkApp">
-		<a data-toggle="modal" data-target="#deleteMessage" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Add new</a>		
+		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Add new</a>		
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
 	</section>
