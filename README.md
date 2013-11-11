@@ -1,7 +1,11 @@
 linkManager
 ===========
 
-Simple ToDo style (incomplete)app to tryout backbone and bootstrap in a sunny weekend.
+Link manager is helps you to store any interesting links,  
+you find online and want to come back later.
+Bookmark sucks.
+
+Link Manaer helps you to archive, filter, edit, and much more coming.
 
 ##Goal
 _______
@@ -26,4 +30,13 @@ btw, better history could help little bit but dont serve the purpose.
 Actually wanted to make a chrome extension.
 - I will make that some day
 
+
+##Demo
+---------
+Go to this link [Link for Live Demo](http://khan4019.github.io/linkManager/)  
+Click on Add New and have fun.
+If you have any suggestion, feel free to inform me. 
+
+----------
+Please note that, this is incomplete (Work in progress)
 
