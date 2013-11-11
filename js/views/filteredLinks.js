@@ -56,8 +56,10 @@
 			this.filterLinks('importance', $('#filterImportance').val());
 		},
 
-		isMultiFilterKey:function(){
+		getFilterCount:function(){
 			var counter = 0;
+
+			//used to check multi. hence need to know  1 or 2
 
 			if($('#filterTitle').val()){
 				counter++;
@@ -75,7 +77,7 @@
 				counter++;
 			}
 
-			return counter == 2;
+			return counter;
 		},
 
 		filterByMultipleKey:function(){
@@ -83,14 +85,23 @@
 		},
 
 		filterLinks:function (filterAttr, filterKey) {
-			var newCollection = null;
+			//TODO: Don't works when filter backwards. As you are backsapcing filtered key
+			var newCollection = null, 
+				filterCount = this.getFilterCount();
 			
-			if(filterKey){
-				newCollection = this.getFilteredLinks(filterAttr, filterKey);
+			
+			if(filterKey || filterCount == 2){
+				newCollection = this.getFilteredCurrentLinks(filterAttr, filterKey);
 			}
-			else{
+			else if (!filterCount){
+				//for no filter we will brand new
 				newCollection = this.getAllIncompletedLinks();
 			}
+			else{
+				
+			}
+
+			console.log(filterCount, filterAttr, filterKey, newCollection);
 
 			this.resetCollection(newCollection);
 		},
@@ -101,11 +112,21 @@
 			});
 		},
 
-		getFilteredLinks:function(filterAttr, filterKey){
-			var fKey = filterKey.toLowerCase(), 
+		getFilteredCurrentLinks:function(filterAttr, filterKey){
+			var fKey = filterKey.toLowerCase(), 			
+				attrVal ='';
+			
+			return this.collection.filter(function(lnk) {			    		    
+			    attrVal = lnk.get(filterAttr);
+			    return attrVal && attrVal.toLowerCase().indexOf(fKey) > -1;
+			});
+		},
+
+		getFilteredIncompletedLinks:function(filterAttr, filterKey){
+			var fKey = filterKey.toLowerCase(), 				
 				attrVal ='';
 
-			return this.collection.localStorage.findAll().filter(function(lnk) {			    		    
+			return his.collection.localStorage.findAll().filter(function(lnk) {			    		    
 			    attrVal = lnk[filterAttr];
 			    return lnk.completed !=100 && attrVal && attrVal.toLowerCase().indexOf(fKey) > -1;
 			});
@@ -125,6 +146,7 @@
 
 		clearFilter:function(){
 			$('#filterTitle, #filterArea, #filterTags, #filterImportance').val('');
+			this.filterLinks('',''); //Force to reload links
 		}
 		
 	});	
