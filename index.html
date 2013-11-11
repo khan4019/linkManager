@@ -56,23 +56,26 @@
 <body>
 	
 	<section id="linkApp">
-		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>
-		<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Show Archieved</button>
-		<div id="divFilter" class="row">
-			<label class="col-sm-1 control-label">Filter:</label>
-			<input type="text" class="col-sm-2" placeholder="Title">
-			<input type="text" class="col-sm-2" placeholder="Area">
-			<input type="text" class="col-sm-2" placeholder="Tags">
-			<input type="text" class="col-sm-2" placeholder="Importance">			
+		<div id="divFilterAndAdd">
+			<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>
+			<button id="swapArchived" class="btn btn-default btn-sm showArchived"><span class="glyphicon glyphicon-road"></span> Show Archived</button>
+			<div id="divFilter" class="row">
+				<label class="col-sm-1 control-label text-right">Filter: </label>
+				<input id="filterTitle" type="text" class="col-sm-2" placeholder="Title">
+				<input id="filterArea" type="text" class="col-sm-2" placeholder="Area">
+				<input id="filterTags" type="text" class="col-sm-2" placeholder="Tags">
+				<input id="filterImportance" type="text" class="col-sm-2" placeholder="Importance">
+				<button id="clearFilter" class="btn btn-default btn-xs">clear</button>			
+			</div>
 		</div>
 		<div class="links"></div>
-		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
+		<p class="muted text-center">*Trying out backbone bootstrap (not completed).</p>	
 	</section>
 	
 	<!-- template for link render	 -->
 	<script id="linkTemplate" type ="text/template">
 		<button title="Finished 10 more percent of this level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
-		<button title="Archieve this link" class="btn btn-warning btn-xs archieve"><span class="glyphicon glyphicon-floppy-save"></span></button>
+		<button title="Archive this link" class="btn btn-warning btn-xs Archive"><span class="glyphicon glyphicon-floppy-save"></span></button>
 		<button title="Delete this link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
 		<a href=<%=url%>><%=title%></a> <span class="text-muted small extraSmallText">(<%=area%>:<%=tags%>-<%=importance%>)</span>
 	</script>
@@ -167,11 +170,14 @@
 	<script src ="lib/js/underscore.js"></script>
 	<script src ="lib/js/backbone.js"></script>
 	<script src ="lib/js/backbone.localStorage.js"></script>		
+	<script src="js/projectInitiation.js"></script>
 	<script src="js/models/linkModel.js"></script>
 	<script src="js/views/linkView.js"></script>
 	<script src="js/views/linksView.js"></script>
 	<script src="js/views/addLinkView.js"></script>
+	<script src="js/views/filteredLinks.js"></script>
 	<script src="js/collections/linkCollection.js"></script>
+	<script src="js/routers/linkAPProuters.js"></script>
 	<script src="js/main.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 

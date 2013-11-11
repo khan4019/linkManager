@@ -1,9 +1,3 @@
-var linkApp = linkApp || {
-		Models:{},
-		Collections:{},
-		Views:{}
-	};
-
 (function () {
 	
 	linkApp.Models.Link = Backbone.Model.extend({

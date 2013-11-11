@@ -1,16 +1,11 @@
-var linkApp = linkApp || {
-		Models:{},
-		Collections:{},
-		Views:{}
-	};
-
 (function () {
 	'use strict';
 	//view for all links
 	linkApp.Views.Links = Backbone.View.extend({
 		
 		tagName:'ul',
-
+		
+		id:'displayingLinks',
 		//dont wanna see dot on each link
 		className: "list-unstyled",
 		
