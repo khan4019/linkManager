@@ -14,7 +14,8 @@
 			'keyup #filterArea': "filterByArea",
 			'keyup #filterTags': "filterByTags",
 			'keyup #filterImportance': "filterByImportance",
-			'click #clearFilter':"clearFilter"
+			'click #clearFilter':"clearFilter",
+			'click #swapArchieved': 'swapArchievedLinks'
 		},
 
 		initialize:function(){			
@@ -36,6 +37,29 @@
 			//push to body to display
 			linkHolder.html(allLinkView.render().el);
 		    return this;
+		},
+
+		swapArchievedLinks:function(){
+			var $btn = $('#swapArchieved'), 
+				showArchieved = $btn.hasClass('showArchieved');
+
+			this.freshLoad(showArchieved);
+			//swap button, icon and class
+			$btn.toggleClass('showArchieved');
+			$btn.find('.glyphicon').toggleClass('glyphicon-road glyphicon-bullhorn')
+			
+		},
+
+		freshLoad:function(loadArchieved){
+			var newCollection = null;
+			if(loadArchieved){
+				newCollection = this.getArchievedLinks();
+			}
+			else{
+				newCollection = this.getAllIncompletedLinks();
+			}
+			console.log(newCollection);
+			if(newCollection) this.resetCollection(newCollection);
 		},
 		
 		filterByTitle:function(){
@@ -101,14 +125,18 @@
 				
 			}
 
-			console.log(filterCount, filterAttr, filterKey, newCollection);
-
-			this.resetCollection(newCollection);
+			if(newCollection) this.resetCollection(newCollection);
 		},
 
 		getAllIncompletedLinks:function(){
 			return this.collection.localStorage.findAll().filter(function(lnk) {			    
 			    return lnk.completed !=100;
+			});
+		},
+
+		getArchievedLinks:function(){
+			return this.collection.localStorage.findAll().filter(function(lnk) {			    
+			    return lnk.completed ==100;
 			});
 		},
 
