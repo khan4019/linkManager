@@ -62,7 +62,7 @@
 			else{
 				newCollection = this.getAllIncompletedLinks();
 			}
-			console.log(newCollection);
+			
 			if(newCollection) this.resetCollection(newCollection);
 		},
 		
