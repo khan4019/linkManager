@@ -28,7 +28,7 @@
 		},
 		
 		render:function(){
-			//reset while rendering
+			//reset while rendering			
 			var linkHolder = $('#displayingLinks');
 		    linkHolder.html('');
 		    
@@ -177,8 +177,10 @@
 		},
 
 		clearFilter:function(){
-			$('#filterTitle, #filterArea, #filterTags, #filterImportance').val('');
-			this.filterLinks('',''); //Force to reload links
+			if(this.getFilterCount()){
+				$('#filterTitle, #filterArea, #filterTags, #filterImportance').val('');
+			this.filterLinks('',''); //Force to reload links	
+			}			
 		}
 		
 	});	
