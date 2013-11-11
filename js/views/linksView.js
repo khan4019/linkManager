@@ -4,7 +4,8 @@
 	linkApp.Views.Links = Backbone.View.extend({
 		
 		tagName:'ul',
-
+		
+		id:'displayingLinks',
 		//dont wanna see dot on each link
 		className: "list-unstyled",
 		
