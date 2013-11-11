@@ -18,14 +18,12 @@
 		},
 
 		initialize:function(){			
-			//this.collection.on("reset", this.render, this);
-
+			
 			//Debounce the keyup
 			this.filterByTitle = _.debounce(this.filterByTitle, 400);
 			this.filterArea = _.debounce(this.filterArea, 400);
 			this.filterByTags = _.debounce(this.filterByTags, 400);
-			this.filterByImportance = _.debounce(this.filterByImportance, 400);
-			this.clearFilter = _.debounce(this.clearFilter, 400);
+			this.filterByImportance = _.debounce(this.filterByImportance, 400);			
 		},
 		
 		render:function(){
@@ -58,6 +56,28 @@
 			this.filterLinks('importance', $('#filterImportance').val());
 		},
 
+		isMultiFilterKey:function(){
+			var counter = 0;
+
+			if($('#filterTitle').val()){
+				counter++;
+			}
+
+			if($('#filterArea').val()){
+				counter++;
+			}
+
+			if(counter <2 && $('#filterTags').val()){
+				counter++;
+			}
+
+			if(counter <2 && $('#filterImportance').val()){
+				counter++;
+			}
+
+			return counter == 2;
+		},
+
 		filterByMultipleKey:function(){
 			console.log('Someday I will implement this');
 		},
@@ -65,7 +85,7 @@
 		filterLinks:function (filterAttr, filterKey) {
 			var newCollection = null;
 			
-			if(filterAttr){
+			if(filterKey){
 				newCollection = this.getFilteredLinks(filterAttr, filterKey);
 			}
 			else{
@@ -104,7 +124,7 @@
 		},
 
 		clearFilter:function(){
-			alert('cleared');
+			$('#filterTitle, #filterArea, #filterTags, #filterImportance').val('');
 		}
 		
 	});	
