@@ -48,6 +48,7 @@
 			this.freshLoad(showArchived);
 			
 			//swap button text, icon and class
+			$('.Archive').toggle(!showArchived);
 			$btn.toggleClass('showArchived');			
 			$btn.find('.glyphicon').toggleClass('glyphicon-road glyphicon-fire');	        
 	        textNode.nodeValue = ' Show ' + (showArchived ? 'Incomplete' : 'Archived');
