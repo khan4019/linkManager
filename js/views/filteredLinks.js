@@ -41,25 +41,13 @@
 		},
 		
 		filterByTitle:function(){
-			var titleKey = $('#filterTitle').val(), 
-				newCollection = null;
 			
-			if(titleKey){
-				newCollection = this.getFilteredLinks('title', titleKey);
-			}
-			else{
-				newCollection = this.getAllIncompletedLinks();
-			}
-
-			this.resetCollection(newCollection);
+			this.filterLinks('title', $('#filterTitle').val());
+			
 		},
 		
 		filterByArea:function(){
-			var areaKey = $('#filterArea').val();
-			
-			if(areaKey){
-				this.applyStringFilter('title', areaKey);
-			}
+			this.filterLinks('area', $('#filterArea').val());			
 		},
 
 		filterByTags:function(){
@@ -72,6 +60,19 @@
 
 		filterByMultipleKey:function(){
 			console.log('Someday I will implement this');
+		},
+
+		filterLinks:function (filterAttr, filterKey) {
+			var newCollection = null;
+			
+			if(filterAttr){
+				newCollection = this.getFilteredLinks(filterAttr, filterKey);
+			}
+			else{
+				newCollection = this.getAllIncompletedLinks();
+			}
+
+			this.resetCollection(newCollection);
 		},
 
 		getAllIncompletedLinks:function(){
