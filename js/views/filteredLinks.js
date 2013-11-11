@@ -41,23 +41,25 @@
 		},
 		
 		filterByTitle:function(){
-			var titleKey = $('#filterTitle').val();
+			var titleKey = $('#filterTitle').val(), 
+				newCollection = null;
+			
+			if(titleKey){
+				newCollection = this.getFilteredLinks('title', titleKey);
+			}
+			else{
+				newCollection = this.getAllIncompletedLinks();
+			}
 
-			// reset current collection silently so the event doesn't trigger			
-			this.collection.reset({ silent: true });
-			
-			var filtered = this.collection.localStorage.findAll().filter(function(lnk) {			    		    
-			    return lnk.completed !=100 && lnk.title && lnk.title.toLowerCase().indexOf(titleKey) > -1;
-			});
-			
-			// trigger reset again. but this time trigger the event so the collection view is rerendered
-			this.collection.reset(filtered);
-			
-			this.render();
+			this.resetCollection(newCollection);
 		},
 		
-		filterByArea:function(areaKey){
+		filterByArea:function(){
+			var areaKey = $('#filterArea').val();
 			
+			if(areaKey){
+				this.applyStringFilter('title', areaKey);
+			}
 		},
 
 		filterByTags:function(){
@@ -72,10 +74,32 @@
 			console.log('Someday I will implement this');
 		},
 
-		addOne:function(link){
-			//add one by one other then dumping everyone
-			var linkView = new linkApp.Views.Link({model:link});
-			$('#displayingLinks').append(linkView.render().el);
+		getAllIncompletedLinks:function(){
+			return this.collection.localStorage.findAll().filter(function(lnk) {			    
+			    return lnk.completed !=100;
+			});
+		},
+
+		getFilteredLinks:function(filterAttr, filterKey){
+			var fKey = filterKey.toLowerCase(), 
+				attrVal ='';
+
+			return this.collection.localStorage.findAll().filter(function(lnk) {			    		    
+			    attrVal = lnk[filterAttr];
+			    return lnk.completed !=100 && attrVal && attrVal.toLowerCase().indexOf(fKey) > -1;
+			});
+				
+		},
+
+		resetCollection:function(newCollection){
+			
+			// reset current collection silently so the event doesn't trigger			
+			this.collection.reset({ silent: true });
+						
+			// trigger reset again. but this time trigger the event so the collection view is rerendered
+			this.collection.reset(newCollection);
+			
+			this.render();
 		},
 
 		clearFilter:function(){
