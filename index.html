@@ -75,6 +75,7 @@
 	<!-- template for link render	 -->
 	<script id="linkTemplate" type ="text/template">
 		<button title="Finished 10 more percent of this level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
+		<button class="btn btn-warning btn-xs edit"><span class="glyphicon glyphicon-edit" title="Edit this link"></span></button>
 		<button title="Archive this link" class="btn btn-warning btn-xs Archive"><span class="glyphicon glyphicon-floppy-save"></span></button>
 		<button title="Delete this link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
 		<a href=<%=url%>><%=title%></a> <span class="text-muted small extraSmallText">(<%=area%>:<%=tags%>-<%=importance%>)</span>
@@ -163,6 +164,84 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+	<!-- delete confimation model	 -->
+<!-- Button trigger modal -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editLinkModal">
+  Launch demo modal
+</button>
+ -->
+<!-- Edit Link Modal -->
+<div class="modal fade" id="editLinkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Are you sure you want to Delete?</h4>
+      </div>
+      <div class="modal-body">
+        	<div class="form-group">
+			    <label for="editLinkTitle" class="col-sm-2 control-label">Title</label>
+			    <div class="col-sm-10">
+			    	<input type="text" id="editLinkTitle" class="form-control"  placeholder="Title" required="true" >
+			    </div>
+			</div>
+            <div class="form-group">
+			    <label for="editLinkURL" class="col-sm-2 control-label">URL</label>
+			    <div class="col-sm-10">
+			    	<input type="url" id="editLinkURL" class="form-control" placeholder="Paste URL" required="true" >
+			    </div>
+			</div>
+			<div class="form-group">
+			    <label for="editLinkArea" class="col-sm-2 control-label">Area</label>
+			    <div class="col-sm-10">
+			    	<input type="text" id="editLinkArea" class="form-control" placeholder="Define focus area (Javascript or css)" required="true" >
+			    </div>
+			</div>
+			<div class="form-group">
+			    <label for="editLinkDescription" class="col-sm-2 control-label">Description</label>
+			    <div class="col-sm-10">
+			    	<textarea id="editLinkDescription" class="form-control"  placeholder="Add a Description" rows="3"></textarea>							    	
+			    </div>
+			</div>
+            <div class="form-group">
+			    <label for="editLinkSource" class="col-sm-2 control-label">Source</label>
+			    <div class="col-sm-10">
+			    	<input type="text" id="editLinkSource" class="form-control"  placeholder="Where you find this link">
+			    </div>
+			</div>
+			<div class="form-group">
+			    <label for="editLinkType" class="col-sm-2 control-label">Type</label>
+			    <div class="col-sm-10">
+			    	<input type="text" id="editLinkType" class="form-control" placeholder="Blog or Video or tutorial">
+			    </div>
+			</div>
+			<div class="form-group">
+			    <label for="editLinkTags" class="col-sm-2 control-label">Tags</label>
+			    <div class="col-sm-10">
+			    	<input type="text" id="editLinkTags" class="form-control" placeholder="Pug tags with space">
+			    </div>
+			</div>
+			<div class="form-group">
+			    <label for="editLinkImportance" class="col-sm-2 control-label">Importance</label>
+			    <div class="col-sm-10">							    	
+			    	<select class="form-control" id="editLinkImportance">
+					  <option>Not Bad</option>
+					  <option>Good</option>
+					  <option>Awesome</option>
+					  <option>Fantastic</option>
+					  <option>Mind Blowing</option>
+					</select>
+			    </div>
+			</div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="deleteLink" class="btn btn-Warning">Update</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 	<!-- End of modal crap -->
 		
 	<!-- TODO: use require for modularity -->

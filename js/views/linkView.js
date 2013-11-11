@@ -19,6 +19,7 @@
 		
 		events:{
 			'click .add10Percent':'add10Percent',
+			'click .edit' : 'edit',
 			'click .archieve':'archieve',
 			'click .delete':'destroy'
 		},
@@ -30,6 +31,10 @@
 			mod.save();
 			//will increase to hundred and will archieve it
 			if(currentLevel ==90) this.archieve();
+		},
+
+		edit:function(){
+			$('#editLinkModal').modal('show');
 		},
 		
 		archieve:function(){			
