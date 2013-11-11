@@ -15,7 +15,7 @@
 			'keyup #filterTags': "filterByTags",
 			'keyup #filterImportance': "filterByImportance",
 			'click #clearFilter':"clearFilter",
-			'click #swapArchieved': 'swapArchievedLinks'
+			'click #swapArchived': 'swapArchivedLinks'
 		},
 
 		initialize:function(){			
@@ -39,21 +39,25 @@
 		    return this;
 		},
 
-		swapArchievedLinks:function(){
-			var $btn = $('#swapArchieved'), 
-				showArchieved = $btn.hasClass('showArchieved');
+		swapArchivedLinks:function(){
+			var el = document.getElementById('swapArchived'),
+				$btn = $(el), 
+				textNode = el.lastChild,
+				showArchived = $btn.hasClass('showArchived');
 
-			this.freshLoad(showArchieved);
-			//swap button, icon and class
-			$btn.toggleClass('showArchieved');
-			$btn.find('.glyphicon').toggleClass('glyphicon-road glyphicon-bullhorn')
+			this.freshLoad(showArchived);
+			
+			//swap button text, icon and class
+			$btn.toggleClass('showArchived');			
+			$btn.find('.glyphicon').toggleClass('glyphicon-road glyphicon-fire');	        
+	        textNode.nodeValue = 'Show ' + (showArchived ? 'Incomplete' : 'Archived');
 			
 		},
 
-		freshLoad:function(loadArchieved){
+		freshLoad:function(loadArchived){
 			var newCollection = null;
-			if(loadArchieved){
-				newCollection = this.getArchievedLinks();
+			if(loadArchived){
+				newCollection = this.getArchivedLinks();
 			}
 			else{
 				newCollection = this.getAllIncompletedLinks();
@@ -134,7 +138,7 @@
 			});
 		},
 
-		getArchievedLinks:function(){
+		getArchivedLinks:function(){
 			return this.collection.localStorage.findAll().filter(function(lnk) {			    
 			    return lnk.completed ==100;
 			});
