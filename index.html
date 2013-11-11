@@ -74,7 +74,8 @@
 	
 	<!-- template for link render	 -->
 	<script id="linkTemplate" type ="text/template">
-		<button title="Finished 10 more percent of this level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button><span class=" edit btn-xs glyphicon glyphicon-edit" title="Edit this link"></span>
+		<button title="Finished 10 more percent of this level" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
+		<button class="btn btn-warning btn-xs edit"><span class="glyphicon glyphicon-edit" title="Edit this link"></span></button>
 		<button title="Archive this link" class="btn btn-warning btn-xs Archive"><span class="glyphicon glyphicon-floppy-save"></span></button>
 		<button title="Delete this link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
 		<a href=<%=url%>><%=title%></a> <span class="text-muted small extraSmallText">(<%=area%>:<%=tags%>-<%=importance%>)</span>

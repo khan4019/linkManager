@@ -34,7 +34,7 @@
 		},
 
 		edit:function(){
-			alert('not impleented');
+			$('#editLinkModal').modal('show');
 		},
 		
 		archieve:function(){			
