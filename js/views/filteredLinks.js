@@ -50,7 +50,7 @@
 			//swap button text, icon and class
 			$btn.toggleClass('showArchived');			
 			$btn.find('.glyphicon').toggleClass('glyphicon-road glyphicon-fire');	        
-	        textNode.nodeValue = 'Show ' + (showArchived ? 'Incomplete' : 'Archived');
+	        textNode.nodeValue = ' Show ' + (showArchived ? 'Incomplete' : 'Archived');
 			
 		},
 
