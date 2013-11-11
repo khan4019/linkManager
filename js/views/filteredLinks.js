@@ -47,15 +47,15 @@
 		},
 		
 		filterByArea:function(){
-			this.filterLinks('area', $('#filterArea').val());			
+			this.filterLinks('area', $('#filterArea').val());
 		},
 
 		filterByTags:function(){
-			console.log('Actual filtering by Tags');
+			this.filterLinks('tags', $('#filterTags').val());
 		},
 
 		filterByImportance:function(){
-			console.log('Actual filtering by Importance');
+			this.filterLinks('importance', $('#filterImportance').val());
 		},
 
 		filterByMultipleKey:function(){
