@@ -3,7 +3,7 @@
 	//when links are filtered
 	linkApp.Views.FilteredLinks = Backbone.View.extend({
 		
-		el:'#divFilter',
+		el:'#divFilterAndAdd',
 
 		tagName:'li',
 		

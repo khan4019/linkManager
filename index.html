@@ -56,15 +56,17 @@
 <body>
 	
 	<section id="linkApp">
-		<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>
-		<button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Show Archieved</button>
-		<div id="divFilter" class="row">
-			<label class="col-sm-1 control-label">Filter:</label>
-			<input id="filterTitle" type="text" class="col-sm-2" placeholder="Title">
-			<input id="filterArea" type="text" class="col-sm-2" placeholder="Area">
-			<input id="filterTags" type="text" class="col-sm-2" placeholder="Tags">
-			<input id="filterImportance" type="text" class="col-sm-2" placeholder="Importance">
-			<button id="clearFilter" class="btn btn-default btn-xs">clear</button>			
+		<div id="divFilterAndAdd">
+			<a data-toggle="modal" data-target="#addLinkModal" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add new</a>
+			<button id="displayArchieved" class="btn btn-default btn-sm showArchieved"><span class="glyphicon glyphicon-road"></span> Show Archieved</button>
+			<div id="divFilter" class="row">
+				<label class="col-sm-1 control-label">Filter:</label>
+				<input id="filterTitle" type="text" class="col-sm-2" placeholder="Title">
+				<input id="filterArea" type="text" class="col-sm-2" placeholder="Area">
+				<input id="filterTags" type="text" class="col-sm-2" placeholder="Tags">
+				<input id="filterImportance" type="text" class="col-sm-2" placeholder="Importance">
+				<button id="clearFilter" class="btn btn-default btn-xs">clear</button>			
+			</div>
 		</div>
 		<div class="links"></div>
 		<p class="muted text-center">*Trying out backbone (excuse for incomplete project).</p>	
