@@ -20,7 +20,7 @@
 		events:{
 			'click .add10Percent':'add10Percent',
 			'click .edit' : 'edit',
-			'click .archieve':'archieve',
+			'click .archive':'archive',
 			'click .delete':'destroy'
 		},
 		
@@ -37,7 +37,7 @@
 			$('#editLinkModal').modal('show');
 		},
 		
-		archieve:function(){			
+		archive:function(){			
 			this.remove();			
 		},
 		

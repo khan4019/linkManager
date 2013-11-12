@@ -36,7 +36,7 @@
 			margin-right: 5px;
 		}
 		.extraSmallText{
-			font-size: 0.7em;
+			font-size: 0.5em;
 		}
 
 		/*color shades based on percent completed*/
@@ -77,7 +77,7 @@
 	<script id="linkTemplate" type ="text/template">
 		<button title="Add 10 more percent. Currently <%=completed%>% done" class="btn btn-xs add10Percent completed<%=completed%>"><span class="glyphicon glyphicon-circle-arrow-up"></span></button>
 		<button class="btn btn-warning btn-xs edit"><span class="glyphicon glyphicon-edit" title="Edit this link"></span></button>
-		<button title="Archive this link" class="btn btn-warning btn-xs Archive"><span class="glyphicon glyphicon-floppy-save"></span></button>
+		<button title="Archive this link" class="btn btn-warning btn-xs archive"><span class="glyphicon glyphicon-floppy-save"></span></button>
 		<button title="Delete this link" class="btn btn-danger btn-xs delete"><span class="glyphicon glyphicon-trash"></span></button> 
 		<a href=<%=url%> > <%=title%> </a><span class="text-muted small extraSmallText">(<%=area%>:<%=tags%>-<%=importance%>)</span>
 	</script>
