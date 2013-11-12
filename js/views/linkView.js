@@ -34,6 +34,9 @@
 		},
 
 		edit:function(){
+			console.log(this.model.toJSON());
+			var editHTML = template('editLinkTemplate')(this.model.toJSON());
+			$('#editModalBody').html(editHTML);
 			$('#editLinkModal').modal('show');
 		},
 		

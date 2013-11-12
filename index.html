@@ -179,72 +179,79 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Are you sure you want to Delete?</h4>
       </div>
-      <div class="modal-body">
-        	<div class="form-group">
-			    <label for="editLinkTitle" class="col-sm-2 control-label">Title</label>
-			    <div class="col-sm-10">
-			    	<input type="text" id="editLinkTitle" class="form-control"  placeholder="Title" required="true" >
-			    </div>
-			</div>
-            <div class="form-group">
-			    <label for="editLinkURL" class="col-sm-2 control-label">URL</label>
-			    <div class="col-sm-10">
-			    	<input type="url" id="editLinkURL" class="form-control" placeholder="Paste URL" required="true" >
-			    </div>
-			</div>
-			<div class="form-group">
-			    <label for="editLinkArea" class="col-sm-2 control-label">Area</label>
-			    <div class="col-sm-10">
-			    	<input type="text" id="editLinkArea" class="form-control" placeholder="Define focus area (Javascript or css)" required="true" >
-			    </div>
-			</div>
-			<div class="form-group">
-			    <label for="editLinkDescription" class="col-sm-2 control-label">Description</label>
-			    <div class="col-sm-10">
-			    	<textarea id="editLinkDescription" class="form-control"  placeholder="Add a Description" rows="3"></textarea>							    	
-			    </div>
-			</div>
-            <div class="form-group">
-			    <label for="editLinkSource" class="col-sm-2 control-label">Source</label>
-			    <div class="col-sm-10">
-			    	<input type="text" id="editLinkSource" class="form-control"  placeholder="Where you find this link">
-			    </div>
-			</div>
-			<div class="form-group">
-			    <label for="editLinkType" class="col-sm-2 control-label">Type</label>
-			    <div class="col-sm-10">
-			    	<input type="text" id="editLinkType" class="form-control" placeholder="Blog or Video or tutorial">
-			    </div>
-			</div>
-			<div class="form-group">
-			    <label for="editLinkTags" class="col-sm-2 control-label">Tags</label>
-			    <div class="col-sm-10">
-			    	<input type="text" id="editLinkTags" class="form-control" placeholder="Pug tags with space">
-			    </div>
-			</div>
-			<div class="form-group">
-			    <label for="editLinkImportance" class="col-sm-2 control-label">Importance</label>
-			    <div class="col-sm-10">							    	
-			    	<select class="form-control" id="editLinkImportance">
-					  <option>Not Bad</option>
-					  <option>Good</option>
-					  <option>Awesome</option>
-					  <option>Fantastic</option>
-					  <option>Mind Blowing</option>
-					</select>
-			    </div>
-			</div> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" id="deleteLink" class="btn btn-Warning">Update</button>
-      </div>
+	   <div id="editModalBody"></div>   
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 	<!-- End of modal crap -->
 		
+	<script  id="editLinkTemplate" type ="text/template">
+		<form id="editLink" class="form-horizontal" role="form">
+		      <!-- should use a template...very verbose html -->
+		      <div class="modal-body">
+		        	<div class="form-group">
+					    <label for="editLinkTitle" class="col-sm-2 control-label">Title</label>
+					    <div class="col-sm-10">
+					    	<input type="text" id="editLinkTitle" class="form-control"  placeholder="Title" required="true" value="<%= title %>" >
+					    </div>
+					</div>
+		            <div class="form-group">
+					    <label for="editLinkURL" class="col-sm-2 control-label">URL</label>
+					    <div class="col-sm-10">
+					    	<input type="url" id="editLinkURL" class="form-control" placeholder="Paste URL" required="true" value="<%= url %>">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="editLinkArea" class="col-sm-2 control-label">Area</label>
+					    <div class="col-sm-10">
+					    	<input type="text" id="editLinkArea" class="form-control" placeholder="Define focus area (Javascript or css)" required="true" value="<%= area %>">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="editLinkDescription" class="col-sm-2 control-label">Description</label>
+					    <div class="col-sm-10">
+					    	<textarea id="editLinkDescription" class="form-control"  placeholder="Add a Description" rows="3" value="<%= description %>"></textarea>							    	
+					    </div>
+					</div>
+		            <div class="form-group">
+					    <label for="editLinkSource" class="col-sm-2 control-label">Source</label>
+					    <div class="col-sm-10">
+					    	<input type="text" id="editLinkSource" class="form-control"  placeholder="Where you find this link" value="<%= source %>">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="editLinkType" class="col-sm-2 control-label">Type</label>
+					    <div class="col-sm-10">
+					    	<input type="text" id="editLinkType" class="form-control" placeholder="Blog or Video or tutorial" value="<%= contentType %>">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="editLinkTags" class="col-sm-2 control-label">Tags</label>
+					    <div class="col-sm-10">
+					    	<input type="text" id="editLinkTags" class="form-control" placeholder="Pug tags with space" value="<%= tags %>">
+					    </div>
+					</div>
+					<div class="form-group">
+					    <label for="editLinkImportance" class="col-sm-2 control-label">Importance</label>
+					    <div class="col-sm-10">							    	
+					    	<select class="form-control" id="editLinkImportance" value="<%= importance %>">
+							  <option>Not Bad</option>
+							  <option>Good</option>
+							  <option>Awesome</option>
+							  <option>Fantastic</option>
+							  <option>Mind Blowing</option>
+							</select>
+					    </div>
+					</div> 
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" id="deleteLink" class="btn btn-Warning">Update</button>
+		      </div>
+	      </form>	
+	</script>		
+
 	<!-- TODO: use require for modularity -->
 	<script src ="lib/js/jquery-2.0.3.js"></script>
 	<script src ="lib/js/underscore.js"></script>
