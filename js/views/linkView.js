@@ -29,8 +29,8 @@
 				currentLevel = mod.get('completed');
 			if(currentLevel <100) mod.set('completed', currentLevel+10);
 			mod.save();
-			//will increase to hundred and will archieve it
-			if(currentLevel ==90) this.archieve();
+			//will increase to hundred and will archive it
+			if(currentLevel ==90) this.archive();
 		},
 
 		edit:function(){
