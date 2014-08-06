@@ -17,7 +17,7 @@
 		//Validate title, url and area
 		validate:function(attrs, options){
 			var newLink = this.toJSON();
-			
+				
 			if(!newLink.title){
 				return "Please provide a title";				
 			}

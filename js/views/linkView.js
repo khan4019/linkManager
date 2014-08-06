@@ -14,7 +14,7 @@
 		
 		initialize:function(){
 			this.model.on('change', this.render, this);
-			this.model.on('destroy', this.remove, this);
+			this.model.on('destroy', this.remove, this);			
 		},		
 		
 		events:{
@@ -33,8 +33,7 @@
 			if(currentLevel ==90) this.archive();
 		},
 
-		edit:function(){
-			console.log(this.model.toJSON());
+		edit:function(){			
 			var editHTML = template('editLinkTemplate')(this.model.toJSON());
 			$('#editModalBody').html(editHTML);
 			$('#editLinkModal').modal('show');

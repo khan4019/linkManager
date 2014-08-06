@@ -8,6 +8,7 @@
 	var addLinkView = new linkApp.Views.AddLink({collection:incompletedLinks});
 	var allLinkView = new linkApp.Views.Links({collection: incompletedLinks});
 	var filteredLinks = new linkApp.Views.FilteredLinks({collection:incompletedLinks});
+	var editLinkView = new linkApp.Views.EditLink({collection:incompletedLinks});
 
 	//push to body to display
 	$('.links').append(allLinkView.render().el);
